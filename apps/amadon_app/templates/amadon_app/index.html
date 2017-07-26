@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amadon</title>
+	{%load static%}
+	<link rel="stylesheet" href="{% static 'amadon_app/style.css' %}" media="screen" title="no title"  charset="utf-8">
+
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div class="header"><h1>Amadon Store!</h1></div>
+	<table>
+		<thead>
+			  <tr>
+			    <th>Items</th>
+			    <th>Price</th> 
+			    <th>Quantity</th>
+			    <th>Actions</th>
+			  </tr>
+		</thead>
+		<tbody>
+	  		{% for x in items %}
+	  			<tr>
+				    <td>{{x.name}}</td>
+				    <td>{{x.price}}</td> 
+				    <form action='/process' method='post'>
+					{% csrf_token %}
+					  	<td>
+					  		<select name='quantity'>
+					    		<option>1</option>
+					     		<option>2</option>
+					     		<option>3</option>
+					     		<option>4</option>
+					     		<option>5</option>
+					     		<option>6</option>
+					     		<option>7</option>
+					     		<option>8</option>
+					     		<option>9</option>
+					  		</select>
+					  	</td>
+					  	<td><input type='hidden' name='price' value={{x.price}}>
+			  			<input type='submit' value='Buy!'/></td>
+					</form>
+				</tr>
+	  		{% endfor %}
+	  	</tbody>
+	</table>
+
+</body>
+</html>

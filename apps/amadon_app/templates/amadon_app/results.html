@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Amadon Checkout</title>
+	{% load static %}
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="{% static 'amadon_app/style.css' %}" media="screen" title="no title"  charset="utf-8">
+
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h3> Thank you for your business!</h3>
+<p>We charged your credit/ debit card ${{request.session.result_price}}.</p>
+<p>You have ordered {{request.session.total_items}} items so far and spent ${{request.session.total_price}} with Amadon.com! </p>
+<form action = '/' method="post">
+{% csrf_token %}
+	<input type = "submit" value = "Go Back!">
+</form>
+<form action="/clear" method="post">
+{% csrf_token %}
+	<input type="submit" value="Clear Session">
+	</form>
+</body>
+</html>
